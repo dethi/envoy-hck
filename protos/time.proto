@@ -1,0 +1,25 @@
+// protos/time.proto
+//
+// This file defines the gRPC service and messages for the time streaming service.
+
+syntax = "proto3";
+
+package time;
+
+option go_package = "your_project_name/protos";
+
+// The request message containing no parameters.
+message TimeRequest {}
+
+// The response message containing the current time.
+message TimeResponse {
+  string current_time = 1;
+}
+
+// The time service definition.
+service TimeService {
+  // A server-to-client streaming RPC.
+  //
+  // Obtains the current time from the server and streams it back to the client.
+  rpc StreamTime(TimeRequest) returns (stream TimeResponse) {}
+}
