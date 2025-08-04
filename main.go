@@ -33,7 +33,7 @@ type server struct {
 
 func (s *server) StreamTime(req *pb.TimeRequest, stream pb.TimeService_StreamTimeServer) error {
 	log.Println("StreamTime request received")
-	ticker := time.NewTicker(10 * time.Second)
+	ticker := time.NewTicker(2 * time.Second)
 	defer ticker.Stop()
 
 	for {

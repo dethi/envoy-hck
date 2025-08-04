@@ -48,6 +48,7 @@ static_resources:
       typed_config:
         "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
         common_tls_context:
+          alpn_protocols: ['h2', 'http/1.1']
           # This is the certificate Envoy will present to the Go app
           tls_certificates:
           - certificate_chain: { filename: "./certs/client.crt" }
@@ -56,9 +57,6 @@ static_resources:
           validation_context:
             trusted_ca:
               filename: "./certs/ca.crt"
-            # Optional: Ensures the certificate presented by the server has the correct subject name.
-            # match_subject_alt_names:
-            # - exact: "localhost"
     common_lb_config:
       healthy_panic_threshold:
         value: 0
@@ -78,4 +76,3 @@ static_resources:
         healthy_threshold: 1
         grpc_health_check:
           service_name: ""
-          # authority: "localhost"
